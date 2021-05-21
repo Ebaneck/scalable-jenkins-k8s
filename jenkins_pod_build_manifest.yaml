@@ -1,0 +1,40 @@
+# To build the example maven app, we need maven, docker and Helm3
+# Let's add images with the above tools to the jenkins build pod manifest
+# To speed up maven builds we ensure to mount the .m2 folder and expose to all builds
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    some-label: pod
+spec:
+  containers:
+    - name: maven
+      image: maven:3.3.9-jdk-8-alpine
+      command:
+        - cat
+      tty: true
+      volumeMounts:
+        - name: m2
+          mountPath: /root/.m2
+    - name: docker
+      image: docker:19.03
+      command:
+        - cat
+      tty: true
+      privileged: true
+      volumeMounts:
+        - name: dockersock
+          mountPath: /var/run/docker.sock
+    - name: helm
+      image: lachlanevenson/k8s-helm:v3.1.1
+      command:
+        - cat
+      tty: true
+  volumes:
+    - name: dockersock
+      hostPath:
+        path: /var/run/docker.sock
+    - name: m2
+      hostPath:
+        path: /root/.m2
