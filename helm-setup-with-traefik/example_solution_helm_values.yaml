@@ -1,0 +1,21 @@
+image:
+  repository: example/example_solution
+  tag: latest
+  pullPolicy: Always
+
+name: "example"
+domain: "localhost"
+
+replicaCount: 1
+
+service:
+  port: 8090
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  hosts:
+    - host:
+      paths:
+        - /
