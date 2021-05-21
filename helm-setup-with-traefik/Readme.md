@@ -22,4 +22,8 @@ helm repo update
 helm install jenkins -n jenkins -f helm-setup-with-traefik/jenkins-values.yml jenkinsci/jenkins
 
 
+Add example application helm charts
+
+helm create example_solution
+
 See extra ordinary notes here: https://hands-on-tech.github.io/2020/03/15/k8s-jenkins-example.html
