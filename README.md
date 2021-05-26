@@ -6,7 +6,7 @@ Ensure that our CI/CD system can expand it's capabilities to handle
 additional load.
 
 Stack:
-- Jenkins(Master/Slave) setup
+- Jenkins(Controller/Agent) setup
 - Minikube(K8s)
 - Docker
 - Kaniko(just in case)
